@@ -2,6 +2,8 @@ from decimal import Decimal
 
 from django import forms
 
+from .utils import get_available_balance
+
 
 class WithdrawForm(forms.Form):
 
@@ -18,11 +20,12 @@ class WithdrawForm(forms.Form):
 
     def __init__(self, user, *args, **kwargs):
         self.user = user
+        self.available = get_available_balance(user)
         super().__init__(*args, **kwargs)
 
     def clean_amount(self):
         amount = self.cleaned_data["amount"]
-        if amount > self.user.balance:
+        if amount > self.available:
             raise forms.ValidationError(
                 "Amount exceeds your available balance."
             )

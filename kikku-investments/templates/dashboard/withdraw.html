@@ -13,8 +13,11 @@
 <div class="stat-card mb-4">
     <div class="stat-label">Available Balance</div>
     <div class="stat-value stat-green">
-        {{ user.balance|intcomma }} FRW
+        {{ available_balance|intcomma }} FRW
     </div>
+    <p class="mb-0 mt-2" style="color: var(--kikku-text-muted); font-size: 0.85rem;">
+        Withdrawals are sent to your MTN MoMo phone: {{ user.phone_number }}
+    </p>
 </div>
 
 <form method="post" class="dashboard-form">

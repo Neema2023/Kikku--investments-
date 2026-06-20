@@ -3,29 +3,62 @@ FEATURED_VIP_PLANS = [
         "name": "VIP 1",
         "amount": 5000,
         "daily_reward": 1000,
+        "duration_days": 10,
         "style": "featured-yellow",
     },
     {
         "name": "VIP 2",
         "amount": 10000,
         "daily_reward": 2000,
+        "duration_days": 10,
         "style": "featured-orange",
     },
     {
         "name": "VIP 3",
         "amount": 15000,
         "daily_reward": 3000,
+        "duration_days": 10,
         "style": "featured-green",
     },
 ]
 
 VIP_PLANS = [
-    {"name": "VIP 4", "amount": 20000, "daily_reward": 4000},
-    {"name": "VIP 5", "amount": 30000, "daily_reward": 6000},
-    {"name": "VIP 6", "amount": 50000, "daily_reward": 9000},
-    {"name": "VIP 7", "amount": 100000, "daily_reward": 12000},
-    {"name": "VIP 8", "amount": 200000, "daily_reward": 23000},
-    {"name": "VIP 9", "amount": 400000, "daily_reward": 32000},
+    {
+        "name": "VIP 4",
+        "amount": 20000,
+        "daily_reward": 4000,
+        "duration_days": 10,
+    },
+    {
+        "name": "VIP 5",
+        "amount": 30000,
+        "daily_reward": 6000,
+        "duration_days": 10,
+    },
+    {
+        "name": "VIP 6",
+        "amount": 50000,
+        "daily_reward": 9000,
+        "duration_days": 15,
+    },
+    {
+        "name": "VIP 7",
+        "amount": 100000,
+        "daily_reward": 12000,
+        "duration_days": 15,
+    },
+    {
+        "name": "VIP 8",
+        "amount": 200000,
+        "daily_reward": 23000,
+        "duration_days": 15,
+    },
+    {
+        "name": "VIP 9",
+        "amount": 400000,
+        "daily_reward": 35000,
+        "duration_days": 15,
+    },
 ]
 
 HOW_IT_WORKS = [
@@ -42,17 +75,17 @@ HOW_IT_WORKS = [
     {
         "step": 3,
         "title": "Send Payment",
-        "description": "Deposit using MTN MoMo and upload proof.",
+        "description": "Send MTN MoMo to 0783108892 and upload your proof.",
     },
     {
         "step": 4,
         "title": "Verification",
-        "description": "Admin verifies payment manually.",
+        "description": "Admin verifies your payment screenshot.",
     },
     {
         "step": 5,
         "title": "Start Earning",
-        "description": "Receive daily rewards according to your VIP plan.",
+        "description": "VIP 1–5 earn daily for 10 days; VIP 6–9 for 15 days.",
     },
 ]
 
@@ -75,3 +108,23 @@ def get_plan_by_name(name):
 
 def get_vip_plan_choices():
     return [(p["name"], p["name"]) for p in get_all_vip_plans()]
+
+
+def get_investment_duration(vip_name):
+    plan = get_plan_by_name(vip_name)
+    if plan:
+        return plan.get("duration_days", 10)
+
+    vip_number = get_vip_number(vip_name)
+    if vip_number and vip_number <= 5:
+        return 10
+    return 15
+
+
+def get_vip_number(vip_name):
+    if not vip_name:
+        return None
+    parts = vip_name.strip().split()
+    if len(parts) >= 2 and parts[-1].isdigit():
+        return int(parts[-1])
+    return None

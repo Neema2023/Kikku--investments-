@@ -1,0 +1,113 @@
+{% extends 'dashboard/base_dashboard.html' %}
+{% load humanize %}
+
+{% block title %}Admin Panel{% endblock %}
+
+{% block dashboard_content %}
+
+<div class="dashboard-header">
+    <h1>Admin Panel</h1>
+    <p>Monitor all website activity. Approve deposits and withdrawals in Django Admin.</p>
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-md-3">
+        <div class="stat-card">
+            <div class="stat-label">Total Users</div>
+            <div class="stat-value">{{ stats.total_users }}</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="stat-card">
+            <div class="stat-label">Active Investments</div>
+            <div class="stat-value stat-yellow">{{ stats.active_investments }}</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="stat-card">
+            <div class="stat-label">Pending Deposits</div>
+            <div class="stat-value">{{ stats.pending_deposits }}</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="stat-card">
+            <div class="stat-label">Pending Withdrawals</div>
+            <div class="stat-value">{{ stats.pending_withdrawals }}</div>
+        </div>
+    </div>
+</div>
+
+<div class="dashboard-actions mb-4">
+    <a href="/admin/investments/deposit/" class="btn btn-kikku-solid">Manage Deposits</a>
+    <a href="/admin/transactions/transaction/" class="btn btn-kikku-outline">Manage Withdrawals</a>
+    <a href="/admin/accounts/customuser/" class="btn btn-kikku-outline">Manage Users</a>
+</div>
+
+<div class="row g-4">
+    <div class="col-lg-6">
+        <h3 class="section-heading">Pending Deposits</h3>
+        {% if pending_deposits %}
+        <div class="table-responsive">
+            <table class="table dashboard-table">
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Plan</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for d in pending_deposits %}
+                    <tr>
+                        <td>{{ d.user.phone_number }}</td>
+                        <td>{{ d.vip_plan }}</td>
+                        <td>{{ d.amount|intcomma }} FRW</td>
+                        <td>{{ d.created_at|date:"M d, H:i" }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <p style="color: var(--kikku-text-muted);">No pending deposits.</p>
+        {% endif %}
+    </div>
+
+    <div class="col-lg-6">
+        <h3 class="section-heading">Pending Withdrawals</h3>
+        {% if pending_withdrawals %}
+        <div class="table-responsive">
+            <table class="table dashboard-table">
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Phone</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for w in pending_withdrawals %}
+                    <tr>
+                        <td>{{ w.user.first_name|default:w.user.username }}</td>
+                        <td>{{ w.user.phone_number }}</td>
+                        <td>{{ w.amount|intcomma }} FRW</td>
+                        <td>{{ w.created_at|date:"M d, H:i" }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <p style="color: var(--kikku-text-muted);">No pending withdrawals.</p>
+        {% endif %}
+    </div>
+</div>
+
+<div class="instruction-card mt-4">
+    <strong>Daily earnings:</strong> Run once per day on PythonAnywhere:
+    <code>python manage.py process_daily_earnings</code>
+</div>
+
+{% endblock %}

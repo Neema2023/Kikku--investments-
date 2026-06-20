@@ -58,6 +58,34 @@
     </a>
 </div>
 
+{% if referred_users %}
+<div class="dashboard-section mt-5">
+    <h3 class="section-heading">Your Referrals</h3>
+    <div class="table-responsive">
+        <table class="table dashboard-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Joined</th>
+                    <th>VIP Plan</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ref in referred_users %}
+                <tr>
+                    <td>{{ ref.first_name|default:"—" }}</td>
+                    <td>{{ ref.phone_number }}</td>
+                    <td>{{ ref.date_joined|date:"M d, Y" }}</td>
+                    <td>{{ ref.vip_plan|default:"None" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endif %}
+
 {% endblock %}
 
 {% block extra_js %}

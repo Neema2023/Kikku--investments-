@@ -83,16 +83,22 @@
         <p class="section-subtitle">Stay updated and communicate directly with our team.</p>
         <div class="row g-3 justify-content-center">
             <div class="col-sm-6 col-md-5 col-lg-4">
-                <a href="https://wa.me/250783108892" target="_blank" rel="noopener" class="btn btn-whatsapp w-100">
-                    WhatsApp Community
+                <a href="{{ whatsapp_community_url }}" target="_blank" rel="noopener" class="btn btn-whatsapp w-100">
+                    Join WhatsApp Group
                 </a>
             </div>
             <div class="col-sm-6 col-md-5 col-lg-4">
-                <a href="https://t.me/kikkuinvestments" target="_blank" rel="noopener" class="btn btn-telegram w-100">
-                    Telegram Group
+                <a href="{{ telegram_group_url }}" target="_blank" rel="noopener" class="btn btn-telegram w-100">
+                    Join Telegram Group
                 </a>
             </div>
         </div>
+        <p class="section-subtitle mt-3 mb-0">
+            Or chat with us directly:
+            <a href="{{ whatsapp_contact_url }}" target="_blank" rel="noopener" style="color: var(--kikku-green);">
+                {{ whatsapp_phone }}
+            </a>
+        </p>
     </div>
 </section>
 
@@ -171,13 +177,13 @@
 <section class="contact-section" id="contact">
     <div class="container">
         <h2 class="section-title">Contact Us</h2>
-        <p class="contact-phone">WhatsApp: +250 783 108 892</p>
+        <p class="contact-phone">WhatsApp: {{ whatsapp_phone }}</p>
         <div class="d-flex flex-wrap justify-content-center gap-3">
-            <a href="https://wa.me/250783108892" target="_blank" rel="noopener" class="btn btn-whatsapp">
-                WhatsApp Community
+            <a href="{{ whatsapp_community_url }}" target="_blank" rel="noopener" class="btn btn-whatsapp">
+                Join WhatsApp Group
             </a>
-            <a href="https://t.me/kikkuinvestments" target="_blank" rel="noopener" class="btn btn-telegram">
-                Telegram Group
+            <a href="{{ telegram_group_url }}" target="_blank" rel="noopener" class="btn btn-telegram">
+                Join Telegram Group
             </a>
         </div>
     </div>

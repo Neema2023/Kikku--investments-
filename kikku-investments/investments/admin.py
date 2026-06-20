@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib import messages
 
-from .models import Deposit
+from .models import Deposit, UserInvestment
 from .services import approve_deposit, reject_deposit
 
 
@@ -45,3 +45,18 @@ class DepositAdmin(admin.ModelAdmin):
     search_fields = ("user__username", "phone_number")
     actions = [approve_deposits, reject_deposits]
     readonly_fields = ("referral_paid",)
+
+
+@admin.register(UserInvestment)
+class UserInvestmentAdmin(admin.ModelAdmin):
+    list_display = (
+        "user",
+        "vip_plan",
+        "daily_reward",
+        "days_paid",
+        "total_days",
+        "status",
+        "started_at",
+    )
+    list_filter = ("status", "vip_plan")
+    search_fields = ("user__username", "user__phone_number")

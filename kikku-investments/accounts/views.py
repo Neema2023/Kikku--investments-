@@ -8,8 +8,8 @@ from django.contrib.auth import logout
 from django.contrib.auth import authenticate
 
 from .forms import RegisterForm
-
 from .models import CustomUser
+from .utils import get_default_referrer
 
 
 def register_view(request):
@@ -42,6 +42,8 @@ def register_view(request):
                         "Invalid referral code."
                     )
                     return redirect("register")
+            else:
+                referrer = get_default_referrer()
 
             user = form.save(commit=False)
 

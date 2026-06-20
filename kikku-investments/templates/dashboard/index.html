@@ -10,6 +10,35 @@
     <p>Smart Investments, Better Future</p>
 </div>
 
+{% if active_investment %}
+<div class="instruction-card mb-4">
+    <h3 class="section-heading-yellow mb-3">Active Investment — {{ active_investment.vip_plan }}</h3>
+    <div class="row g-3">
+        <div class="col-md-3">
+            <div class="stat-label">Daily Income</div>
+            <div class="stat-value stat-green">{{ active_investment.daily_reward|intcomma }} FRW</div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-label">Days Paid</div>
+            <div class="stat-value">{{ active_investment.days_paid }} / {{ active_investment.total_days }}</div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-label">Days Remaining</div>
+            <div class="stat-value stat-yellow">{{ active_investment.days_remaining }}</div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-label">Total Expected</div>
+            <div class="stat-value">{{ active_investment.total_expected_earnings|intcomma }} FRW</div>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="instruction-card mb-4">
+    <p class="mb-2">You have no active investment plan.</p>
+    <a href="{% url 'deposit' %}" class="btn btn-kikku-solid">Choose a VIP Plan &amp; Deposit</a>
+</div>
+{% endif %}
+
 <div class="row g-4">
     <div class="col-md-4">
         <div class="stat-card">
@@ -21,9 +50,9 @@
     </div>
     <div class="col-md-4">
         <div class="stat-card">
-            <div class="stat-label">Balance</div>
+            <div class="stat-label">Available Balance</div>
             <div class="stat-value stat-green">
-                {{ user.balance|intcomma }} FRW
+                {{ available_balance|intcomma }} FRW
             </div>
         </div>
     </div>
@@ -61,6 +90,13 @@
         </div>
     </div>
 </div>
+
+{% if active_investment and active_investment.days_remaining == 0 %}
+<div class="instruction-card mt-4">
+    <strong>Plan completed!</strong> Recharge by making a new deposit to start earning again.
+    <a href="{% url 'deposit' %}" class="btn btn-kikku-solid ms-2">Recharge Plan</a>
+</div>
+{% endif %}
 
 <div class="dashboard-actions mt-4">
     <a href="{% url 'deposit' %}" class="btn btn-kikku-solid">Make a Deposit</a>

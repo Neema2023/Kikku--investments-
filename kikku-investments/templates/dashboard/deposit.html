@@ -7,8 +7,15 @@
 
 <div class="dashboard-header">
     <h1>Deposit</h1>
-    <p>Select a VIP plan and submit your payment proof.</p>
+    <p>Send MTN MoMo to <strong class="text-yellow">{{ momo_number }}</strong>, then upload your proof.</p>
 </div>
+
+{% if has_active_investment %}
+<div class="instruction-card mb-4">
+    You already have an active investment. Wait until it completes (all daily payments received) before recharging.
+    <a href="{% url 'dashboard' %}" class="btn btn-kikku-outline ms-2">Back to Dashboard</a>
+</div>
+{% else %}
 
 <form method="post" enctype="multipart/form-data" id="depositForm">
     {% csrf_token %}
@@ -24,6 +31,7 @@
                     name="vip_plan"
                     value="{{ plan.name }}"
                     data-amount="{{ plan.amount }}"
+                    data-days="{{ plan.duration_days }}"
                     {% if forloop.first %}checked{% endif %}
                     required
                 >
@@ -31,6 +39,7 @@
                     <div class="vip-select-name">{{ plan.name }}</div>
                     <div class="vip-select-amount">{{ plan.amount|intcomma }} FRW</div>
                     <div class="vip-select-daily">{{ plan.daily_reward|intcomma }} FRW/day</div>
+                    <div class="vip-select-daily">{{ plan.duration_days }} days</div>
                 </div>
             </label>
             {% endfor %}
@@ -47,9 +56,10 @@
             <p><strong>Step 1:</strong> Send <span id="paymentAmount">5,000</span> FRW to:
                 <strong class="text-yellow">{{ momo_number }}</strong>
             </p>
-            <p><strong>Step 2:</strong> Take a screenshot of the payment confirmation.</p>
+            <p><strong>Step 2:</strong> Take a screenshot of the MTN MoMo confirmation.</p>
             <p><strong>Step 3:</strong> Upload the proof below.</p>
-            <p><strong>Step 4:</strong> Submit your request.</p>
+            <p><strong>Step 4:</strong> Submit and wait for admin approval.</p>
+            <p class="mb-0"><strong>Duration:</strong> VIP 1–5 = 10 days · VIP 6–9 = 15 days of daily income.</p>
         </div>
     </div>
 
@@ -72,9 +82,12 @@
     </button>
 </form>
 
+{% endif %}
+
 {% endblock %}
 
 {% block extra_js %}
+{% if not has_active_investment %}
 <script>
 (function () {
     const radios = document.querySelectorAll('input[name="vip_plan"]');
@@ -98,4 +111,5 @@
     updateAmount();
 })();
 </script>
+{% endif %}
 {% endblock %}

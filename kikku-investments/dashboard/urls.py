@@ -6,6 +6,7 @@ from .views import (
     withdraw_view,
     referrals_view,
     profile_view,
+    admin_panel_view,
 )
 
 urlpatterns = [
@@ -38,5 +39,11 @@ urlpatterns = [
         "dashboard/profile/",
         profile_view,
         name="profile"
+    ),
+
+    path(
+        "dashboard/admin/",
+        admin_panel_view,
+        name="admin_panel"
     ),
 ]
