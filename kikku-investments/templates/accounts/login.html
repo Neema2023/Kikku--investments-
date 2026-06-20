@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Login — Kikku Investments{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="auth-card p-4 p-md-5">
+                <h2>Login</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="phone_number">Phone Number</label>
+                        <input
+                            type="text"
+                            name="phone_number"
+                            id="phone_number"
+                            class="form-control"
+                            placeholder="+250..."
+                            required
+                        >
+                    </div>
+                    <div class="mb-4">
+                        <label for="password">Password</label>
+                        <input
+                            type="password"
+                            name="password"
+                            id="password"
+                            class="form-control"
+                            required
+                        >
+                    </div>
+                    <button type="submit" class="btn btn-kikku-solid w-100">
+                        Login
+                    </button>
+                </form>
+                <p class="text-center mt-4 mb-0" style="color: var(--kikku-text-muted); font-size: 0.9rem;">
+                    Don't have an account?
+                    <a href="{% url 'register' %}" style="color: var(--kikku-yellow);">Register</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

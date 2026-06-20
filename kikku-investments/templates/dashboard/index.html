@@ -1,0 +1,103 @@
+{% extends 'dashboard/base_dashboard.html' %}
+{% load humanize %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block dashboard_content %}
+
+<div class="dashboard-header">
+    <h1>Welcome, {{ user.first_name|default:"Investor" }}</h1>
+    <p>Smart Investments, Better Future</p>
+</div>
+
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="stat-card">
+            <div class="stat-label">Current VIP Plan</div>
+            <div class="stat-value stat-yellow">
+                {{ user.vip_plan|default:"None" }}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="stat-card">
+            <div class="stat-label">Balance</div>
+            <div class="stat-value stat-green">
+                {{ user.balance|intcomma }} FRW
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="stat-card">
+            <div class="stat-label">Total Deposits</div>
+            <div class="stat-value">
+                {{ user.total_deposits|intcomma }} FRW
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4 mt-1">
+    <div class="col-md-4">
+        <div class="stat-card">
+            <div class="stat-label">Total Referrals</div>
+            <div class="stat-value">{{ user.total_referrals }}</div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="stat-card">
+            <div class="stat-label">Referral Earnings</div>
+            <div class="stat-value stat-green">
+                {{ user.referral_earnings|intcomma }} FRW
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="stat-card">
+            <div class="stat-label">Total Withdrawals</div>
+            <div class="stat-value">
+                {{ user.total_withdrawals|intcomma }} FRW
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="dashboard-actions mt-4">
+    <a href="{% url 'deposit' %}" class="btn btn-kikku-solid">Make a Deposit</a>
+    <a href="{% url 'withdraw' %}" class="btn btn-kikku-outline">Withdraw</a>
+    <a href="{% url 'referrals' %}" class="btn btn-kikku-outline">Share Referral</a>
+</div>
+
+{% if recent_transactions %}
+<div class="dashboard-section mt-5">
+    <h3 class="section-heading">Recent Activity</h3>
+    <div class="table-responsive">
+        <table class="table dashboard-table">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tx in recent_transactions %}
+                <tr>
+                    <td>{{ tx.get_type_display }}</td>
+                    <td>{{ tx.amount|intcomma }} FRW</td>
+                    <td>
+                        <span class="status-badge status-{{ tx.status }}">
+                            {{ tx.get_status_display }}
+                        </span>
+                    </td>
+                    <td>{{ tx.created_at|date:"M d, Y H:i" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

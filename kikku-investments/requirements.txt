@@ -1,0 +1,6 @@
+Django
+Pillow
+mysqlclient
+python-dotenv
+django-crispy-forms
+crispy-bootstrap5

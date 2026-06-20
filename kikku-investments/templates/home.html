@@ -1,0 +1,186 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block content %}
+
+<section class="hero-section" id="home">
+    <div class="container">
+        <h1 class="hero-title">
+            KIKKU <span class="highlight">INVESTMENTS</span>
+        </h1>
+        <p class="hero-subtitle">Smart Investments, Better Future</p>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+            {% if user.is_authenticated %}
+                <a href="{% url 'deposit' %}" class="btn btn-kikku-hero">Start Investing</a>
+            {% else %}
+                <a href="{% url 'register' %}" class="btn btn-kikku-hero">Start Investing</a>
+            {% endif %}
+            <a href="#communities" class="btn btn-kikku-white-outline">Join Community</a>
+        </div>
+    </div>
+</section>
+
+<section class="section-dark" id="plans">
+    <div class="container">
+        <h2 class="section-title">Investment Plans</h2>
+
+        <div class="row g-4 mb-4">
+            {% for plan in featured_vip_plans %}
+            <div class="col-md-4">
+                <div class="featured-vip-card {{ plan.style }}">
+                    <div class="vip-name">{{ plan.name }}</div>
+                    <div class="vip-amount">{{ plan.amount|intcomma }} FRW</div>
+                    <div class="vip-daily">{{ plan.daily_reward|intcomma }} FRW/day</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="row g-4">
+            {% for plan in vip_plans %}
+            <div class="col-md-4 col-lg-4">
+                <div class="vip-card">
+                    <div class="vip-name">{{ plan.name }}</div>
+                    <div class="vip-amount">{{ plan.amount|intcomma }} FRW</div>
+                    <div class="vip-reward">Daily Reward: {{ plan.daily_reward|intcomma }} FRW</div>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'deposit' %}" class="btn btn-invest">Invest Now</a>
+                    {% else %}
+                        <a href="{% url 'register' %}" class="btn btn-invest">Invest Now</a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section-default" id="how-it-works">
+    <div class="container">
+        <h2 class="section-title">How It Works</h2>
+        <div class="row g-4">
+            {% for step in how_it_works %}
+            <div class="col-6 col-lg">
+                <div class="step-card">
+                    <div class="step-number">{{ step.step }}</div>
+                    <div class="step-title">{{ step.title }}</div>
+                    <p class="step-description">{{ step.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="referral-banner" id="referral">
+    <h2>Earn 10% Referral Bonus</h2>
+    <p>Invite friends to Kikku Investments and earn a commission when they invest.</p>
+</section>
+
+<section class="communities-section" id="communities">
+    <div class="container">
+        <h2 class="section-title">Join Our Communities</h2>
+        <p class="section-subtitle">Stay updated and communicate directly with our team.</p>
+        <div class="row g-3 justify-content-center">
+            <div class="col-sm-6 col-md-5 col-lg-4">
+                <a href="https://wa.me/250783108892" target="_blank" rel="noopener" class="btn btn-whatsapp w-100">
+                    WhatsApp Community
+                </a>
+            </div>
+            <div class="col-sm-6 col-md-5 col-lg-4">
+                <a href="https://t.me/kikkuinvestments" target="_blank" rel="noopener" class="btn btn-telegram w-100">
+                    Telegram Group
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="about-section" id="about">
+    <div class="container">
+        <h2 class="section-title">About Kikku Investments</h2>
+        <p class="about-text">
+            Kikku Investments is a smart investment platform built for Rwanda.
+            Choose from VIP plans starting at 5,000 FRW, deposit via MTN MoMo,
+            and earn daily rewards. Invite friends and earn a 10% referral bonus
+            on their investments.
+        </p>
+    </div>
+</section>
+
+<section class="section-dark" id="faq">
+    <div class="container">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="accordion" id="faqAccordion">
+                    <div class="faq-item">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                How do I start investing?
+                            </button>
+                        </h3>
+                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Register with your phone number, choose a VIP plan, send payment via MTN MoMo, and upload your proof of payment. Once verified, you start earning daily rewards.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                What payment method is accepted?
+                            </button>
+                        </h3>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                We accept deposits via MTN Mobile Money (MoMo). After sending payment, upload a screenshot as proof for admin verification.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                How does the referral bonus work?
+                            </button>
+                        </h3>
+                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Share your unique referral code with friends. When they register and invest, you earn a 10% commission on their investment amount.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                How long does verification take?
+                            </button>
+                        </h3>
+                        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Our admin team manually verifies each deposit. Verification is typically completed within a few hours during business hours.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="contact-section" id="contact">
+    <div class="container">
+        <h2 class="section-title">Contact Us</h2>
+        <p class="contact-phone">WhatsApp: +250 783 108 892</p>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+            <a href="https://wa.me/250783108892" target="_blank" rel="noopener" class="btn btn-whatsapp">
+                WhatsApp Community
+            </a>
+            <a href="https://t.me/kikkuinvestments" target="_blank" rel="noopener" class="btn btn-telegram">
+                Telegram Group
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,995 @@
+:root {
+    --kikku-bg: #0a0e17;
+    --kikku-bg-card: #111827;
+    --kikku-bg-card-hover: #1a2235;
+    --kikku-yellow: #ffb800;
+    --kikku-yellow-dark: #e6a600;
+    --kikku-orange: #ff8c00;
+    --kikku-green: #22c55e;
+    --kikku-whatsapp: #25d366;
+    --kikku-telegram: #0088cc;
+    --kikku-text: #ffffff;
+    --kikku-text-muted: #9ca3af;
+    --kikku-navy: #0f172a;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--kikku-bg);
+    color: var(--kikku-text);
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Navbar */
+.kikku-navbar {
+    background-color: var(--kikku-navy) !important;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.kikku-logo {
+    width: 42px;
+    height: 42px;
+    background: linear-gradient(135deg, var(--kikku-yellow), var(--kikku-orange));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: #000;
+    flex-shrink: 0;
+}
+
+.kikku-brand-text {
+    color: var(--kikku-yellow);
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+}
+
+.kikku-brand-tagline {
+    color: var(--kikku-text-muted);
+    font-size: 0.7rem;
+    line-height: 1.2;
+}
+
+.kikku-nav-link {
+    color: var(--kikku-text) !important;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem !important;
+    transition: color 0.2s;
+}
+
+.kikku-nav-link:hover {
+    color: var(--kikku-yellow) !important;
+}
+
+.btn-kikku-outline {
+    border: 2px solid var(--kikku-yellow);
+    color: var(--kikku-yellow);
+    background: transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 0.45rem 1.25rem;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+}
+
+.btn-kikku-outline:hover {
+    background: var(--kikku-yellow);
+    color: #000;
+}
+
+.btn-kikku-solid {
+    background: var(--kikku-yellow);
+    color: #000;
+    border: 2px solid var(--kikku-yellow);
+    border-radius: 8px;
+    font-weight: 700;
+    padding: 0.45rem 1.25rem;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+}
+
+.btn-kikku-solid:hover {
+    background: var(--kikku-yellow-dark);
+    border-color: var(--kikku-yellow-dark);
+    color: #000;
+}
+
+.btn-kikku-white-outline {
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    color: var(--kikku-text);
+    background: transparent;
+    border-radius: 50px;
+    font-weight: 600;
+    padding: 0.75rem 2rem;
+    transition: all 0.2s;
+}
+
+.btn-kikku-white-outline:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--kikku-text);
+    border-color: var(--kikku-text);
+}
+
+.btn-kikku-hero {
+    background: var(--kikku-yellow);
+    color: #000;
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    padding: 0.75rem 2rem;
+    transition: all 0.2s;
+}
+
+.btn-kikku-hero:hover {
+    background: var(--kikku-yellow-dark);
+    color: #000;
+    transform: translateY(-1px);
+}
+
+/* Hero */
+.hero-section {
+    padding: 5rem 0 4rem;
+    text-align: center;
+    background: linear-gradient(180deg, var(--kikku-navy) 0%, var(--kikku-bg) 100%);
+}
+
+.hero-title {
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: 2px;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+}
+
+.hero-title .highlight {
+    color: var(--kikku-yellow);
+}
+
+.hero-subtitle {
+    font-size: 1.15rem;
+    color: var(--kikku-text-muted);
+    margin-bottom: 2rem;
+}
+
+/* Section titles */
+.section-title {
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.section-dark {
+    padding: 4rem 0;
+    background-color: #000;
+}
+
+.section-default {
+    padding: 4rem 0;
+}
+
+/* Featured VIP cards */
+.featured-vip-card {
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    color: #fff;
+    height: 100%;
+    transition: transform 0.2s;
+}
+
+.featured-vip-card:hover {
+    transform: translateY(-4px);
+}
+
+.featured-yellow {
+    background: linear-gradient(160deg, #ffc107, #ffb800);
+    color: #000;
+}
+
+.featured-orange {
+    background: linear-gradient(160deg, #ffab00, #ff8c00);
+}
+
+.featured-green {
+    background: linear-gradient(160deg, #34d399, #059669);
+}
+
+.featured-vip-card .vip-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
+
+.featured-vip-card .vip-amount {
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin-bottom: 0.25rem;
+}
+
+.featured-vip-card .vip-daily {
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+/* VIP grid cards */
+.vip-card {
+    background: var(--kikku-bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 1.75rem 1.5rem;
+    text-align: center;
+    height: 100%;
+    transition: all 0.2s;
+}
+
+.vip-card:hover {
+    background: var(--kikku-bg-card-hover);
+    border-color: rgba(255, 184, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.vip-card .vip-name {
+    color: var(--kikku-yellow);
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.vip-card .vip-amount {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+.vip-card .vip-reward {
+    color: var(--kikku-green);
+    font-size: 0.9rem;
+    margin-bottom: 1.25rem;
+}
+
+.btn-invest {
+    background: var(--kikku-yellow);
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    padding: 0.6rem 1.5rem;
+    width: 100%;
+    transition: all 0.2s;
+}
+
+.btn-invest:hover {
+    background: var(--kikku-yellow-dark);
+    color: #000;
+}
+
+/* How it works */
+.step-card {
+    background: var(--kikku-bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 1.75rem 1.25rem;
+    text-align: center;
+    height: 100%;
+}
+
+.step-number {
+    width: 48px;
+    height: 48px;
+    background: var(--kikku-yellow);
+    color: #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.1rem;
+    margin: 0 auto 1rem;
+}
+
+.step-title {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.step-description {
+    color: var(--kikku-text-muted);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Referral banner */
+.referral-banner {
+    background: linear-gradient(90deg, #ff8c00, #ffb800);
+    padding: 3rem 2rem;
+    text-align: center;
+    margin: 0;
+}
+
+.referral-banner h2 {
+    color: #000;
+    font-weight: 800;
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    margin-bottom: 0.5rem;
+}
+
+.referral-banner p {
+    color: rgba(0, 0, 0, 0.75);
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* Communities */
+.communities-section {
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.communities-section .section-subtitle {
+    color: var(--kikku-text-muted);
+    margin-bottom: 2rem;
+}
+
+.btn-whatsapp {
+    background: var(--kikku-whatsapp);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    padding: 1rem 1.5rem;
+    transition: all 0.2s;
+}
+
+.btn-whatsapp:hover {
+    background: #1fb855;
+    color: #fff;
+}
+
+.btn-telegram {
+    background: var(--kikku-telegram);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    padding: 1rem 1.5rem;
+    transition: all 0.2s;
+}
+
+.btn-telegram:hover {
+    background: #0077b5;
+    color: #fff;
+}
+
+/* Footer */
+.kikku-footer {
+    background: var(--kikku-navy);
+    padding: 3rem 0 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.kikku-footer .footer-brand {
+    color: var(--kikku-yellow);
+    font-weight: 800;
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.kikku-footer .footer-tagline {
+    color: var(--kikku-text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.kikku-footer a {
+    color: var(--kikku-green);
+    font-weight: 500;
+}
+
+.kikku-footer a.telegram-link {
+    color: var(--kikku-telegram);
+}
+
+.kikku-footer .copyright {
+    color: var(--kikku-text-muted);
+    font-size: 0.8rem;
+    margin-top: 2rem;
+}
+
+/* Floating chat */
+.chat-fab {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 56px;
+    height: 56px;
+    background: var(--kikku-whatsapp);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+    z-index: 1050;
+    transition: transform 0.2s;
+}
+
+.chat-fab:hover {
+    transform: scale(1.08);
+    color: #fff;
+}
+
+.chat-fab svg {
+    width: 28px;
+    height: 28px;
+    fill: #fff;
+}
+
+/* Auth cards */
+.auth-card {
+    background: var(--kikku-bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    color: var(--kikku-text);
+}
+
+.auth-card .form-control {
+    background: var(--kikku-bg);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: var(--kikku-text);
+    border-radius: 8px;
+    padding: 0.65rem 0.85rem;
+}
+
+.auth-card .form-control:focus {
+    background: var(--kikku-bg);
+    border-color: var(--kikku-yellow);
+    color: var(--kikku-text);
+    box-shadow: 0 0 0 0.2rem rgba(255, 184, 0, 0.15);
+}
+
+.auth-card label {
+    color: var(--kikku-text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.35rem;
+}
+
+.auth-card h2 {
+    color: var(--kikku-yellow);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.auth-card .helptext,
+.auth-card ul.errorlist {
+    color: var(--kikku-text-muted);
+    font-size: 0.8rem;
+}
+
+.auth-card ul.errorlist {
+    color: #f87171;
+    list-style: none;
+    padding: 0;
+}
+
+/* Messages */
+.kikku-alert {
+    border-radius: 8px;
+    border: none;
+}
+
+.kikku-alert-success {
+    background: rgba(34, 197, 94, 0.15);
+    color: var(--kikku-green);
+}
+
+.kikku-alert-error {
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+}
+
+.kikku-alert-info {
+    background: rgba(255, 184, 0, 0.12);
+    color: var(--kikku-yellow);
+}
+
+/* About section */
+.about-section {
+    padding: 4rem 0;
+    background: var(--kikku-bg);
+}
+
+.about-text {
+    color: var(--kikku-text-muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* FAQ */
+.faq-item {
+    background: var(--kikku-bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+}
+
+.faq-item .accordion-button {
+    background: var(--kikku-bg-card);
+    color: var(--kikku-text);
+    font-weight: 600;
+    box-shadow: none;
+}
+
+.faq-item .accordion-button:not(.collapsed) {
+    background: var(--kikku-bg-card-hover);
+    color: var(--kikku-yellow);
+}
+
+.faq-item .accordion-button::after {
+    filter: invert(1);
+}
+
+.faq-item .accordion-body {
+    background: var(--kikku-bg-card);
+    color: var(--kikku-text-muted);
+}
+
+/* Contact */
+.contact-section {
+    padding: 4rem 0;
+    background: #000;
+    text-align: center;
+}
+
+.contact-phone {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 991px) {
+    .kikku-navbar .navbar-collapse {
+        padding-top: 1rem;
+    }
+
+    .kikku-nav-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-top: 0.75rem;
+    }
+
+    .kikku-nav-actions .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Dashboard layout */
+.dashboard-body {
+    overflow-x: hidden;
+}
+
+.dashboard-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.dashboard-sidebar {
+    width: 240px;
+    background: var(--kikku-navy);
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 100;
+}
+
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    padding: 0 0.5rem;
+}
+
+.sidebar-brand-title {
+    color: var(--kikku-yellow);
+    font-weight: 800;
+    font-size: 1.1rem;
+    line-height: 1.2;
+}
+
+.sidebar-brand-sub {
+    color: var(--kikku-text-muted);
+    font-size: 0.75rem;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    flex: 1;
+}
+
+.sidebar-link {
+    color: var(--kikku-text);
+    padding: 0.7rem 1rem;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+}
+
+.sidebar-link:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--kikku-yellow);
+}
+
+.sidebar-link.active {
+    background: var(--kikku-yellow);
+    color: #000;
+    font-weight: 700;
+}
+
+.sidebar-footer {
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.sidebar-logout {
+    color: var(--kikku-text-muted) !important;
+}
+
+.dashboard-main {
+    flex: 1;
+    margin-left: 240px;
+    padding: 2rem;
+    min-height: 100vh;
+}
+
+.dashboard-header h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 0.25rem;
+}
+
+.dashboard-header p {
+    color: var(--kikku-text-muted);
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: var(--kikku-bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 1.5rem;
+    height: 100%;
+}
+
+.stat-label {
+    color: var(--kikku-text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.stat-value {
+    font-size: 1.75rem;
+    font-weight: 800;
+}
+
+.stat-yellow {
+    color: var(--kikku-yellow);
+}
+
+.stat-green {
+    color: var(--kikku-green);
+}
+
+.text-yellow {
+    color: var(--kikku-yellow);
+}
+
+.section-heading {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+}
+
+.section-heading-yellow {
+    color: var(--kikku-yellow);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+}
+
+.dashboard-section {
+    margin-bottom: 2rem;
+}
+
+.dashboard-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.instruction-card {
+    background: var(--kikku-bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 1.5rem;
+    color: var(--kikku-text-muted);
+    line-height: 1.7;
+}
+
+.instruction-card p {
+    margin-bottom: 0.75rem;
+}
+
+.instruction-card p:last-child {
+    margin-bottom: 0;
+}
+
+/* VIP plan selection */
+.vip-select-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+}
+
+.vip-select-card {
+    cursor: pointer;
+    margin: 0;
+}
+
+.vip-select-card input {
+    display: none;
+}
+
+.vip-select-inner {
+    background: var(--kikku-bg-card);
+    border: 2px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 1.25rem 1rem;
+    text-align: center;
+    transition: all 0.2s;
+    height: 100%;
+}
+
+.vip-select-card input:checked + .vip-select-inner {
+    border-color: var(--kikku-yellow);
+    background: var(--kikku-bg-card-hover);
+}
+
+.vip-select-name {
+    color: var(--kikku-yellow);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.vip-select-amount {
+    font-size: 1.15rem;
+    font-weight: 800;
+    margin-bottom: 0.25rem;
+}
+
+.vip-select-daily {
+    color: var(--kikku-green);
+    font-size: 0.8rem;
+}
+
+.dashboard-file-input {
+    background: var(--kikku-bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: var(--kikku-text);
+    border-radius: 10px;
+    padding: 0.75rem;
+}
+
+.dashboard-file-input::file-selector-button {
+    background: var(--kikku-yellow);
+    color: #000;
+    border: none;
+    border-radius: 6px;
+    padding: 0.4rem 0.85rem;
+    font-weight: 600;
+    margin-right: 0.75rem;
+    cursor: pointer;
+}
+
+.dashboard-form .form-control {
+    background: var(--kikku-bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: var(--kikku-text);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+}
+
+.dashboard-form .form-control:focus {
+    background: var(--kikku-bg-card);
+    border-color: var(--kikku-yellow);
+    color: var(--kikku-text);
+    box-shadow: 0 0 0 0.2rem rgba(255, 184, 0, 0.15);
+}
+
+/* Referral page */
+.referral-card {
+    background: var(--kikku-bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    max-width: 560px;
+}
+
+.referral-code {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--kikku-yellow);
+    letter-spacing: 4px;
+}
+
+.referral-link-box {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.referral-link-input {
+    background: var(--kikku-bg);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: var(--kikku-text);
+    border-radius: 8px;
+    font-size: 0.85rem;
+}
+
+/* Profile */
+.profile-card {
+    background: var(--kikku-bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    overflow: hidden;
+    max-width: 600px;
+}
+
+.profile-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.profile-row:last-child {
+    border-bottom: none;
+}
+
+.profile-label {
+    color: var(--kikku-text-muted);
+    font-size: 0.9rem;
+}
+
+.profile-value {
+    font-weight: 600;
+    text-align: right;
+}
+
+/* Table */
+.dashboard-table {
+    color: var(--kikku-text);
+    margin: 0;
+}
+
+.dashboard-table thead th {
+    color: var(--kikku-text-muted);
+    font-weight: 600;
+    font-size: 0.85rem;
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+    padding: 0.75rem 1rem;
+}
+
+.dashboard-table tbody td {
+    border-bottom-color: rgba(255, 255, 255, 0.06);
+    padding: 0.85rem 1rem;
+    vertical-align: middle;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 0.2rem 0.65rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.status-pending {
+    background: rgba(255, 184, 0, 0.15);
+    color: var(--kikku-yellow);
+}
+
+.status-approved,
+.status-completed,
+.status-active {
+    background: rgba(34, 197, 94, 0.15);
+    color: var(--kikku-green);
+}
+
+.status-rejected,
+.status-blocked {
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+}
+
+@media (max-width: 991px) {
+    .dashboard-sidebar {
+        width: 100%;
+        position: relative;
+        height: auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        padding: 1rem;
+    }
+
+    .sidebar-brand {
+        margin-bottom: 0;
+        flex: 1;
+    }
+
+    .sidebar-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+        margin-top: 1rem;
+        gap: 0.25rem;
+    }
+
+    .sidebar-link {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.85rem;
+    }
+
+    .sidebar-footer {
+        display: none;
+    }
+
+    .dashboard-main {
+        margin-left: 0;
+        padding: 1.25rem;
+    }
+
+    .dashboard-layout {
+        flex-direction: column;
+    }
+
+    .referral-link-box {
+        flex-direction: column;
+    }
+
+    .vip-select-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

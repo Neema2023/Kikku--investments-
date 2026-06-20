@@ -1,0 +1,83 @@
+{% extends 'dashboard/base_dashboard.html' %}
+{% load humanize %}
+
+{% block title %}Referrals{% endblock %}
+
+{% block dashboard_content %}
+
+<div class="dashboard-header">
+    <h1>Referrals</h1>
+    <p>Share your code and earn {{ referral_commission }}% commission on referrals.</p>
+</div>
+
+<div class="referral-card">
+    <div class="stat-label">Your Referral Code</div>
+    <div class="referral-code">{{ user.referral_code }}</div>
+
+    <div class="stat-label mt-4">Your Referral Link</div>
+    <div class="referral-link-box">
+        <input
+            type="text"
+            id="referralLink"
+            class="form-control referral-link-input"
+            value="{{ referral_link }}"
+            readonly
+        >
+        <button type="button" class="btn btn-kikku-solid" id="copyLinkBtn">
+            Copy Link
+        </button>
+    </div>
+
+    <div class="row g-3 mt-4">
+        <div class="col-6">
+            <div class="stat-label">Total Referrals</div>
+            <div class="stat-value">{{ user.total_referrals }}</div>
+        </div>
+        <div class="col-6">
+            <div class="stat-label">Referral Earnings</div>
+            <div class="stat-value stat-green">
+                {{ user.referral_earnings|intcomma }} FRW
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="instruction-card mt-4">
+    <p class="mb-2">
+        <strong>How it works:</strong> Share your referral link with friends.
+        When they register and their deposit is approved, you instantly receive
+        <strong>{{ referral_commission }}%</strong> of their investment added to your balance.
+    </p>
+    <a
+        href="https://wa.me/?text=Join%20Kikku%20Investments%20and%20start%20earning!%20{{ referral_link|urlencode }}"
+        target="_blank"
+        rel="noopener"
+        class="btn btn-whatsapp"
+    >
+        Share on WhatsApp
+    </a>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function () {
+    const btn = document.getElementById('copyLinkBtn');
+    const input = document.getElementById('referralLink');
+
+    if (!btn || !input) return;
+
+    btn.addEventListener('click', function () {
+        input.select();
+        input.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(input.value).then(function () {
+            btn.textContent = 'Copied!';
+            setTimeout(function () {
+                btn.textContent = 'Copy Link';
+            }, 2000);
+        });
+    });
+})();
+</script>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'dashboard/base_dashboard.html' %}
+{% load humanize %}
+
+{% block title %}Withdraw{% endblock %}
+
+{% block dashboard_content %}
+
+<div class="dashboard-header">
+    <h1>Withdraw</h1>
+    <p>Request a withdrawal to your MTN MoMo account.</p>
+</div>
+
+<div class="stat-card mb-4">
+    <div class="stat-label">Available Balance</div>
+    <div class="stat-value stat-green">
+        {{ user.balance|intcomma }} FRW
+    </div>
+</div>
+
+<form method="post" class="dashboard-form">
+    {% csrf_token %}
+
+    <div class="mb-4">
+        <label for="id_amount" class="form-label text-muted">Amount</label>
+        {{ form.amount }}
+        {% for error in form.amount.errors %}
+        <div class="text-danger small mt-1">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <button type="submit" class="btn btn-kikku-solid btn-lg w-100">
+        Submit Withdrawal Request
+    </button>
+</form>
+
+{% endblock %}

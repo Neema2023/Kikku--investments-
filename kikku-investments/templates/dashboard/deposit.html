@@ -1,0 +1,101 @@
+{% extends 'dashboard/base_dashboard.html' %}
+{% load humanize %}
+
+{% block title %}Deposit{% endblock %}
+
+{% block dashboard_content %}
+
+<div class="dashboard-header">
+    <h1>Deposit</h1>
+    <p>Select a VIP plan and submit your payment proof.</p>
+</div>
+
+<form method="post" enctype="multipart/form-data" id="depositForm">
+    {% csrf_token %}
+
+    <div class="dashboard-section">
+        <h3 class="section-heading-yellow">Select VIP Plan</h3>
+
+        <div class="vip-select-grid">
+            {% for plan in all_vip_plans %}
+            <label class="vip-select-card">
+                <input
+                    type="radio"
+                    name="vip_plan"
+                    value="{{ plan.name }}"
+                    data-amount="{{ plan.amount }}"
+                    {% if forloop.first %}checked{% endif %}
+                    required
+                >
+                <div class="vip-select-inner">
+                    <div class="vip-select-name">{{ plan.name }}</div>
+                    <div class="vip-select-amount">{{ plan.amount|intcomma }} FRW</div>
+                    <div class="vip-select-daily">{{ plan.daily_reward|intcomma }} FRW/day</div>
+                </div>
+            </label>
+            {% endfor %}
+        </div>
+
+        {% for error in form.vip_plan.errors %}
+        <div class="text-danger small mt-2">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <div class="dashboard-section">
+        <h3 class="section-heading-yellow">Payment Instructions</h3>
+        <div class="instruction-card">
+            <p><strong>Step 1:</strong> Send <span id="paymentAmount">5,000</span> FRW to:
+                <strong class="text-yellow">{{ momo_number }}</strong>
+            </p>
+            <p><strong>Step 2:</strong> Take a screenshot of the payment confirmation.</p>
+            <p><strong>Step 3:</strong> Upload the proof below.</p>
+            <p><strong>Step 4:</strong> Submit your request.</p>
+        </div>
+    </div>
+
+    <div class="dashboard-section">
+        <label class="form-label text-muted">Upload Proof of Payment</label>
+        <input
+            type="file"
+            name="proof_image"
+            class="form-control dashboard-file-input"
+            accept="image/*"
+            required
+        >
+        {% for error in form.proof_image.errors %}
+        <div class="text-danger small mt-2">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <button type="submit" class="btn btn-kikku-solid btn-lg w-100 mt-2">
+        Submit Deposit Request
+    </button>
+</form>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function () {
+    const radios = document.querySelectorAll('input[name="vip_plan"]');
+    const amountEl = document.getElementById('paymentAmount');
+
+    function formatAmount(value) {
+        return Number(value).toLocaleString('en-US');
+    }
+
+    function updateAmount() {
+        const selected = document.querySelector('input[name="vip_plan"]:checked');
+        if (selected && amountEl) {
+            amountEl.textContent = formatAmount(selected.dataset.amount);
+        }
+    }
+
+    radios.forEach(function (radio) {
+        radio.addEventListener('change', updateAmount);
+    });
+
+    updateAmount();
+})();
+</script>
+{% endblock %}
