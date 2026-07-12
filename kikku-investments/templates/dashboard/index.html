@@ -12,11 +12,11 @@
 
 {% if active_investment %}
 <div class="instruction-card mb-4">
-    <h3 class="section-heading-yellow mb-3">Active Investment — {{ active_investment.vip_plan }}</h3>
+    <h3 class="section-heading-green mb-3" style="color: #28a745 !important;">Active Investment — {{ active_investment.vip_plan }}</h3>
     <div class="row g-3">
         <div class="col-md-3">
             <div class="stat-label">Daily Income</div>
-            <div class="stat-value stat-green">{{ active_investment.daily_reward|intcomma }} FRW</div>
+            <div class="stat-value" style="color: #007bff !important;">{{ active_investment.daily_reward|intcomma }} FRW</div>
         </div>
         <div class="col-md-3">
             <div class="stat-label">Days Paid</div>
@@ -24,7 +24,7 @@
         </div>
         <div class="col-md-3">
             <div class="stat-label">Days Remaining</div>
-            <div class="stat-value stat-yellow">{{ active_investment.days_remaining }}</div>
+            <div class="stat-value" style="color: #28a745 !important;">{{ active_investment.days_remaining }}</div>
         </div>
         <div class="col-md-3">
             <div class="stat-label">Total Expected</div>
@@ -35,7 +35,7 @@
 {% else %}
 <div class="instruction-card mb-4">
     <p class="mb-2">You have no active investment plan.</p>
-    <a href="{% url 'deposit' %}" class="btn btn-kikku-solid">Choose a VIP Plan &amp; Deposit</a>
+    <a href="{% url 'deposit' %}" class="btn btn-kikku-solid" style="background-color: #007bff !important; border-color: #007bff !important; color: #fff !important;">Choose a VIP Plan &amp; Deposit</a>
 </div>
 {% endif %}
 
@@ -43,7 +43,7 @@
     <div class="col-md-4">
         <div class="stat-card">
             <div class="stat-label">Current VIP Plan</div>
-            <div class="stat-value stat-yellow">
+            <div class="stat-value" style="color: #28a745 !important;">
                 {{ user.vip_plan|default:"None" }}
             </div>
         </div>
@@ -51,7 +51,7 @@
     <div class="col-md-4">
         <div class="stat-card">
             <div class="stat-label">Available Balance</div>
-            <div class="stat-value stat-green">
+            <div class="stat-value" style="color: #007bff !important;">
                 {{ available_balance|intcomma }} FRW
             </div>
         </div>
@@ -76,7 +76,7 @@
     <div class="col-md-4">
         <div class="stat-card">
             <div class="stat-label">Referral Earnings</div>
-            <div class="stat-value stat-green">
+            <div class="stat-value" style="color: #007bff !important;">
                 {{ user.referral_earnings|intcomma }} FRW
             </div>
         </div>
@@ -94,19 +94,19 @@
 {% if active_investment and active_investment.days_remaining == 0 %}
 <div class="instruction-card mt-4">
     <strong>Plan completed!</strong> Recharge by making a new deposit to start earning again.
-    <a href="{% url 'deposit' %}" class="btn btn-kikku-solid ms-2">Recharge Plan</a>
+    <a href="{% url 'deposit' %}" class="btn btn-kikku-solid ms-2" style="background-color: #007bff !important; border-color: #007bff !important; color: #fff !important;">Recharge Plan</a>
 </div>
 {% endif %}
 
 <div class="dashboard-actions mt-4">
-    <a href="{% url 'deposit' %}" class="btn btn-kikku-solid">Make a Deposit</a>
-    <a href="{% url 'withdraw' %}" class="btn btn-kikku-outline">Withdraw</a>
-    <a href="{% url 'referrals' %}" class="btn btn-kikku-outline">Share Referral</a>
+    <a href="{% url 'deposit' %}" class="btn btn-kikku-solid" style="background-color: #007bff !important; border-color: #007bff !important; color: #fff !important;">Make a Deposit</a>
+    <a href="{% url 'withdraw' %}" class="btn btn-kikku-outline" style="color: #28a745 !important; border-color: #28a745 !important;">Withdraw</a>
+    <a href="{% url 'referrals' %}" class="btn btn-kikku-outline" style="color: #28a745 !important; border-color: #28a745 !important;">Share Referral</a>
 </div>
 
 {% if recent_transactions %}
 <div class="dashboard-section mt-5">
-    <h3 class="section-heading">Recent Activity</h3>
+    <h3 class="section-heading" style="color: #28a745 !important;">Recent Activity</h3>
     <div class="table-responsive">
         <table class="table dashboard-table">
             <thead>

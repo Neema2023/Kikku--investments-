@@ -8,7 +8,7 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="auth-card p-4 p-md-5">
-                <h2>Create Account</h2>
+                <h2 style="color: #28a745 !important;">Create Account</h2>
                 <form method="post">
                     {% csrf_token %}
                     {% for field in form %}
@@ -23,13 +23,13 @@
                         {% endfor %}
                     </div>
                     {% endfor %}
-                    <button type="submit" class="btn btn-kikku-solid w-100">
+                    <button type="submit" class="btn btn-kikku-solid w-100" style="background-color: #28a745 !important; border-color: #28a745 !important; color: #fff !important;">
                         Register
                     </button>
                 </form>
                 <p class="text-center mt-4 mb-0" style="color: var(--kikku-text-muted); font-size: 0.9rem;">
                     Already have an account?
-                    <a href="{% url 'login' %}" style="color: var(--kikku-yellow);">Login</a>
+                    <a href="{% url 'login' %}" style="color: #28a745 !important;">Login</a>
                 </p>
             </div>
         </div>

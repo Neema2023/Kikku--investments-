@@ -12,7 +12,7 @@
 
 <div class="referral-card">
     <div class="stat-label">Your Referral Code</div>
-    <div class="referral-code">{{ user.referral_code }}</div>
+    <div class="referral-code" style="color: #28a745 !important;">{{ user.referral_code }}</div>
 
     <div class="stat-label mt-4">Your Referral Link</div>
     <div class="referral-link-box">
@@ -23,7 +23,7 @@
             value="{{ referral_link }}"
             readonly
         >
-        <button type="button" class="btn btn-kikku-solid" id="copyLinkBtn">
+        <button type="button" class="btn btn-kikku-solid" id="copyLinkBtn" style="background-color: #28a745 !important; border-color: #28a745 !important; color: #fff !important;">
             Copy Link
         </button>
     </div>
@@ -35,7 +35,7 @@
         </div>
         <div class="col-6">
             <div class="stat-label">Referral Earnings</div>
-            <div class="stat-value stat-green">
+            <div class="stat-value" style="color: #007bff !important;">
                 {{ user.referral_earnings|intcomma }} FRW
             </div>
         </div>
@@ -53,6 +53,7 @@
         target="_blank"
         rel="noopener"
         class="btn btn-whatsapp"
+        style="background-color: #25D366 !important; border-color: #25D366 !important; color: #fff !important;"
     >
         Share on WhatsApp
     </a>
@@ -60,7 +61,7 @@
 
 {% if referred_users %}
 <div class="dashboard-section mt-5">
-    <h3 class="section-heading">Your Referrals</h3>
+    <h3 class="section-heading" style="color: #28a745 !important;">Your Referrals</h3>
     <div class="table-responsive">
         <table class="table dashboard-table">
             <thead>

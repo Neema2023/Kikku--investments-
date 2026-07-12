@@ -19,7 +19,7 @@
     </div>
     <div class="profile-row">
         <span class="profile-label">Referral Code</span>
-        <span class="profile-value text-yellow">{{ user.referral_code }}</span>
+        <span class="profile-value" style="color: #28a745 !important;">{{ user.referral_code }}</span>
     </div>
     <div class="profile-row">
         <span class="profile-label">Referred By</span>
@@ -50,8 +50,8 @@
 </div>
 
 <div class="dashboard-actions mt-4">
-    <a href="{% url 'referrals' %}" class="btn btn-kikku-solid">Share Referral Link</a>
-    <a href="{% url 'deposit' %}" class="btn btn-kikku-outline">Make a Deposit</a>
+    <a href="{% url 'referrals' %}" class="btn btn-kikku-solid" style="background-color: #28a745 !important; border-color: #28a745 !important; color: #fff !important;">Share Referral Link</a>
+    <a href="{% url 'deposit' %}" class="btn btn-kikku-outline" style="color: #28a745 !important; border-color: #28a745 !important;">Make a Deposit</a>
 </div>
 
 {% endblock %}
