@@ -38,6 +38,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -73,8 +75,10 @@ if os.getenv("DATABASE_URL"):
         "default": dj_database_url.config(
             default=os.getenv("DATABASE_URL"),
             conn_max_age=600,
+            ssl_require=False,
         )
     }
+
 elif os.getenv("DB_ENGINE") == "mysql":
     DATABASES = {
         "default": {
@@ -89,6 +93,7 @@ elif os.getenv("DB_ENGINE") == "mysql":
             },
         }
     }
+
 else:
     DATABASES = {
         "default": {
@@ -107,8 +112,16 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
+STATICFILES_STORAGE = (
+    "whitenoise.storage.CompressedManifestStaticFilesStorage"
+)
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
@@ -117,21 +130,35 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "accounts.CustomUser"
 
-MOMO_NUMBER = os.getenv("MOMO_NUMBER", "0783108892")
-REFERRAL_COMMISSION_PERCENT = int(
-    os.getenv("REFERRAL_COMMISSION_PERCENT", "10")
+MOMO_NUMBER = os.getenv(
+    "MOMO_NUMBER",
+    "0783108892"
 )
+
+REFERRAL_COMMISSION_PERCENT = int(
+    os.getenv(
+        "REFERRAL_COMMISSION_PERCENT",
+        "10"
+    )
+)
+
 LOGIN_URL = "login"
 
-WHATSAPP_PHONE = os.getenv("WHATSAPP_PHONE", "+250783108892")
+WHATSAPP_PHONE = os.getenv(
+    "WHATSAPP_PHONE",
+    "+250783108892"
+)
+
 WHATSAPP_CONTACT_URL = os.getenv(
     "WHATSAPP_CONTACT_URL",
     "https://wa.me/250783108892",
 )
+
 WHATSAPP_COMMUNITY_URL = os.getenv(
     "WHATSAPP_COMMUNITY_URL",
     "https://chat.whatsapp.com/",
 )
+
 TELEGRAM_GROUP_URL = os.getenv(
     "TELEGRAM_GROUP_URL",
     "https://t.me/kikkuinvestments",
@@ -139,6 +166,9 @@ TELEGRAM_GROUP_URL = os.getenv(
 
 CSRF_TRUSTED_ORIGINS = [
     origin.strip()
-    for origin in os.getenv("CSRF_TRUSTED_ORIGINS", "").split(",")
+    for origin in os.getenv(
+        "CSRF_TRUSTED_ORIGINS",
+        ""
+    ).split(",")
     if origin.strip()
 ]
