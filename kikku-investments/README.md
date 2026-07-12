@@ -140,6 +140,7 @@ CustomUser.objects.create_superuser(
 ### 7. Run the development server
 
 ```bash
+..\venv\Scripts\activate
 python manage.py runserver
 ```
 

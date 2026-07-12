@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load humanize %}
+{% load static %}
 
 {% block content %}
 
@@ -24,25 +25,33 @@
     <div class="container">
         <h2 class="section-title">Investment Plans</h2>
 
-        <div class="row g-4 mb-4">
+        <!-- Combined all plans in one row with same design -->
+        <div class="row g-4">
+            <!-- Featured Plans (G1, G2, G3) -->
             {% for plan in featured_vip_plans %}
-            <div class="col-md-4">
-                <div class="featured-vip-card {{ plan.style }}">
-                    <div class="vip-name">{{ plan.name }}</div>
+            <div class="col-md-4 col-lg-4">
+                <div class="vip-card">
+                    <div class="vip-name">G{{ forloop.counter }}</div>
                     <div class="vip-amount">{{ plan.amount|intcomma }} FRW</div>
-                    <div class="vip-daily">{{ plan.daily_reward|intcomma }} FRW/day</div>
+                    <div class="vip-reward">Daily Reward: {{ plan.daily_reward|intcomma }} FRW</div>
+                    <div class="vip-duration">{{ plan.duration_days }} days</div>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'deposit' %}" class="btn btn-invest">Invest Now</a>
+                    {% else %}
+                        <a href="{% url 'register' %}" class="btn btn-invest">Invest Now</a>
+                    {% endif %}
                 </div>
             </div>
             {% endfor %}
-        </div>
 
-        <div class="row g-4">
+            <!-- Other Plans (G4, G5, G6, G7, G8, G9) -->
             {% for plan in vip_plans %}
             <div class="col-md-4 col-lg-4">
                 <div class="vip-card">
-                    <div class="vip-name">{{ plan.name }}</div>
+                    <div class="vip-name">G{{ forloop.counter|add:3 }}</div>
                     <div class="vip-amount">{{ plan.amount|intcomma }} FRW</div>
                     <div class="vip-reward">Daily Reward: {{ plan.daily_reward|intcomma }} FRW</div>
+                    <div class="vip-duration">{{ plan.duration_days }} days</div>
                     {% if user.is_authenticated %}
                         <a href="{% url 'deposit' %}" class="btn btn-invest">Invest Now</a>
                     {% else %}
@@ -83,20 +92,20 @@
         <p class="section-subtitle">Stay updated and communicate directly with our team.</p>
         <div class="row g-3 justify-content-center">
             <div class="col-sm-6 col-md-5 col-lg-4">
-                <a href="{{ whatsapp_community_url }}" target="_blank" rel="noopener" class="btn btn-whatsapp w-100">
+                <a href="https://chat.whatsapp.com/Bw7Er7WyzuPFFug0y5j34Q?s=sh&p=a&ilr=0" target="_blank" rel="noopener" class="btn btn-whatsapp w-100">
                     Join WhatsApp Group
                 </a>
             </div>
             <div class="col-sm-6 col-md-5 col-lg-4">
-                <a href="{{ telegram_group_url }}" target="_blank" rel="noopener" class="btn btn-telegram w-100">
+                <a href="https://t.me/+QJKZYOPASUI5OTJk" target="_blank" rel="noopener" class="btn btn-telegram w-100">
                     Join Telegram Group
                 </a>
             </div>
         </div>
         <p class="section-subtitle mt-3 mb-0">
             Or chat with us directly:
-            <a href="{{ whatsapp_contact_url }}" target="_blank" rel="noopener" style="color: var(--kikku-green);">
-                {{ whatsapp_phone }}
+            <a href="https://wa.me/250734738860" target="_blank" rel="noopener" style="color: var(--kikku-green);">
+                +250 734738860
             </a>
         </p>
     </div>
@@ -177,12 +186,12 @@
 <section class="contact-section" id="contact">
     <div class="container">
         <h2 class="section-title">Contact Us</h2>
-        <p class="contact-phone">WhatsApp: {{ whatsapp_phone }}</p>
+        <p class="contact-phone">WhatsApp: +250 734 738 860</p>
         <div class="d-flex flex-wrap justify-content-center gap-3">
-            <a href="{{ whatsapp_community_url }}" target="_blank" rel="noopener" class="btn btn-whatsapp">
+            <a href="https://chat.whatsapp.com/Bw7Er7WyzuPFFug0y5j34Q?s=sh&p=a&ilr=0" target="_blank" rel="noopener" class="btn btn-whatsapp">
                 Join WhatsApp Group
             </a>
-            <a href="{{ telegram_group_url }}" target="_blank" rel="noopener" class="btn btn-telegram">
+            <a href="https://t.me/+QJKZYOPASUI5OTJk" target="_blank" rel="noopener" class="btn btn-telegram">
                 Join Telegram Group
             </a>
         </div>
