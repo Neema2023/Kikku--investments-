@@ -106,7 +106,13 @@
                 <div class="step-card" style="border-color: #28a745 !important; background: rgba(40, 167, 69, 0.1) !important;">
                     <div class="step-number" style="color: #007bff !important; background: transparent !important;">{{ step.step }}</div>
                     <div class="step-title" style="color: #28a745 !important;">{{ step.title }}</div>
-                    <p class="step-description" style="color: #ffffff !important;">{{ step.description }}</p>
+                    <p class="step-description" style="color: #ffffff !important;">
+                        {% if step.step == 3 %}
+                            Send MTN MoMo to <strong style="color: #28a745 !important;">0789613968</strong> or <strong style="color: #28a745 !important;">0796166462</strong> and upload your proof.
+                        {% else %}
+                            {{ step.description }}
+                        {% endif %}
+                    </p>
                 </div>
             </div>
             {% endfor %}
