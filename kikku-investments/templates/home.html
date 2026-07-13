@@ -6,8 +6,11 @@
 
 <section class="hero-section" id="home">
     <div class="container">
-        <h1 class="hero-title">
-            KIKKU <span class="highlight" style="color: #007bff !important;">INVESTMENTS</span>
+        <h1 class="hero-title" style="display: flex; flex-direction: column; align-items: center; gap: 0;">
+            <span>
+                CLASSIC <span class="highlight" style="color: #007bff !important;">INVESTMENTS</span>
+            </span>
+            <span style="color: #28a745 !important; font-size: 0.8em; font-weight: 700; letter-spacing: 2px;">CAR</span>
         </h1>
         <p class="hero-subtitle">Smart Investments, Better Future</p>
         <div class="d-flex flex-wrap justify-content-center gap-3">
@@ -30,16 +33,27 @@
             <!-- Featured Plans (J1, J2, J3) -->
             {% for plan in featured_vip_plans %}
             <div class="col-md-4 col-lg-4">
-                <div class="vip-card" style="border-color: #28a745 !important;">
-                    <div class="vip-name" style="color: #007bff !important;">J{{ forloop.counter }}</div>
-                    <div class="vip-amount" style="color: #28a745 !important;">{{ plan.amount|intcomma }} FRW</div>
-                    <div class="vip-reward" style="color: #28a745 !important;">Daily Reward: {{ plan.daily_reward|intcomma }} FRW</div>
-                    <div class="vip-duration" style="color: #ffffff !important;">{{ plan.duration_days }} days</div>
-                    {% if user.is_authenticated %}
-                        <a href="{% url 'deposit' %}" class="btn btn-invest" style="background-color: #007bff !important; border-color: #007bff !important; color: #fff !important;">Invest Now</a>
-                    {% else %}
-                        <a href="{% url 'register' %}" class="btn btn-invest" style="background-color: #007bff !important; border-color: #007bff !important; color: #fff !important;">Invest Now</a>
-                    {% endif %}
+                <div class="vip-card" style="position: relative; border-color: #28a745 !important; overflow: hidden; border-radius: 10px; padding: 0; min-height: 280px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end;">
+                    {% with plan_number=forloop.counter %}
+                        {% if plan_number == 1 %}
+                            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: url('{% static 'images/image1.jpeg' %}'); background-size: cover; background-position: center; background-repeat: no-repeat; opacity: 1; border-radius: 10px; z-index: 0;"></div>
+                        {% elif plan_number == 2 %}
+                            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: url('{% static 'images/image2.jpeg' %}'); background-size: cover; background-position: center; background-repeat: no-repeat; opacity: 1; border-radius: 10px; z-index: 0;"></div>
+                        {% elif plan_number == 3 %}
+                            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: url('{% static 'images/image3.jpeg' %}'); background-size: cover; background-position: center; background-repeat: no-repeat; opacity: 1; border-radius: 10px; z-index: 0;"></div>
+                        {% endif %}
+                    {% endwith %}
+                    <div style="position: relative; z-index: 10; width: 100%; text-align: center; padding: 15px 20px; background: linear-gradient(transparent, rgba(0,0,0,0.7) 60%, rgba(0,0,0,0.9));">
+                        <div class="vip-name" style="color: #007bff !important; font-weight: bold; font-size: 1.5em; text-shadow: 2px 2px 8px rgba(0,0,0,0.9), 0 0 15px rgba(0,0,0,0.8);">J{{ forloop.counter }}</div>
+                        <div class="vip-amount" style="color: #28a745 !important; font-weight: bold; font-size: 1.3em; text-shadow: 2px 2px 8px rgba(0,0,0,0.9), 0 0 15px rgba(0,0,0,0.8);">{{ plan.amount|intcomma }} FRW</div>
+                        <div class="vip-reward" style="color: #28a745 !important; font-weight: bold; text-shadow: 2px 2px 8px rgba(0,0,0,0.9), 0 0 15px rgba(0,0,0,0.8);">Daily Reward: {{ plan.daily_reward|intcomma }} FRW</div>
+                        <div class="vip-duration" style="color: #ffffff !important; font-weight: bold; text-shadow: 2px 2px 8px rgba(0,0,0,0.9), 0 0 15px rgba(0,0,0,0.8);">{{ plan.duration_days }} days</div>
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'deposit' %}" class="btn btn-invest" style="background-color: #007bff !important; border-color: #007bff !important; color: #fff !important; margin-top: 10px;">Invest Now</a>
+                        {% else %}
+                            <a href="{% url 'register' %}" class="btn btn-invest" style="background-color: #007bff !important; border-color: #007bff !important; color: #fff !important; margin-top: 10px;">Invest Now</a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
             {% endfor %}
@@ -47,16 +61,35 @@
             <!-- Other Plans (J4, J5, J6, J7, J8, J9) -->
             {% for plan in vip_plans %}
             <div class="col-md-4 col-lg-4">
-                <div class="vip-card" style="border-color: #28a745 !important;">
-                    <div class="vip-name" style="color: #007bff !important;">J{{ forloop.counter|add:3 }}</div>
-                    <div class="vip-amount" style="color: #28a745 !important;">{{ plan.amount|intcomma }} FRW</div>
-                    <div class="vip-reward" style="color: #28a745 !important;">Daily Reward: {{ plan.daily_reward|intcomma }} FRW</div>
-                    <div class="vip-duration" style="color: #ffffff !important;">{{ plan.duration_days }} days</div>
-                    {% if user.is_authenticated %}
-                        <a href="{% url 'deposit' %}" class="btn btn-invest" style="background-color: #007bff !important; border-color: #007bff !important; color: #fff !important;">Invest Now</a>
-                    {% else %}
-                        <a href="{% url 'register' %}" class="btn btn-invest" style="background-color: #007bff !important; border-color: #007bff !important; color: #fff !important;">Invest Now</a>
-                    {% endif %}
+                <div class="vip-card" style="position: relative; border-color: #28a745 !important; overflow: hidden; border-radius: 10px; padding: 0; min-height: 280px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end;">
+                    {% with plan_number=forloop.counter|add:3 %}
+                        {% if plan_number == 4 %}
+                            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: url('{% static 'images/image4.jpeg' %}'); background-size: cover; background-position: center; background-repeat: no-repeat; opacity: 1; border-radius: 10px; z-index: 0;"></div>
+                        {% elif plan_number == 5 %}
+                            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: url('{% static 'images/image5.jpeg' %}'); background-size: cover; background-position: center; background-repeat: no-repeat; opacity: 1; border-radius: 10px; z-index: 0;"></div>
+                        {% elif plan_number == 6 %}
+                            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: url('{% static 'images/image6.jpeg' %}'); background-size: cover; background-position: center; background-repeat: no-repeat; opacity: 1; border-radius: 10px; z-index: 0;"></div>
+                        {% elif plan_number == 7 %}
+                            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: url('{% static 'images/image7.jpeg' %}'); background-size: cover; background-position: center; background-repeat: no-repeat; opacity: 1; border-radius: 10px; z-index: 0;"></div>
+                        {% elif plan_number == 8 %}
+                            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: url('{% static 'images/image8.jpeg' %}'); background-size: cover; background-position: center; background-repeat: no-repeat; opacity: 1; border-radius: 10px; z-index: 0;"></div>
+                        {% elif plan_number == 9 %}
+                            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: url('{% static 'images/image9.jpeg' %}'); background-size: cover; background-position: center; background-repeat: no-repeat; opacity: 1; border-radius: 10px; z-index: 0;"></div>
+                        {% else %}
+                            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: url('{% static 'images/image9.jpeg' %}'); background-size: cover; background-position: center; background-repeat: no-repeat; opacity: 1; border-radius: 10px; z-index: 0;"></div>
+                        {% endif %}
+                    {% endwith %}
+                    <div style="position: relative; z-index: 10; width: 100%; text-align: center; padding: 15px 20px; background: linear-gradient(transparent, rgba(0,0,0,0.7) 60%, rgba(0,0,0,0.9));">
+                        <div class="vip-name" style="color: #007bff !important; font-weight: bold; font-size: 1.5em; text-shadow: 2px 2px 8px rgba(0,0,0,0.9), 0 0 15px rgba(0,0,0,0.8);">J{{ forloop.counter|add:3 }}</div>
+                        <div class="vip-amount" style="color: #28a745 !important; font-weight: bold; font-size: 1.3em; text-shadow: 2px 2px 8px rgba(0,0,0,0.9), 0 0 15px rgba(0,0,0,0.8);">{{ plan.amount|intcomma }} FRW</div>
+                        <div class="vip-reward" style="color: #28a745 !important; font-weight: bold; text-shadow: 2px 2px 8px rgba(0,0,0,0.9), 0 0 15px rgba(0,0,0,0.8);">Daily Reward: {{ plan.daily_reward|intcomma }} FRW</div>
+                        <div class="vip-duration" style="color: #ffffff !important; font-weight: bold; text-shadow: 2px 2px 8px rgba(0,0,0,0.9), 0 0 15px rgba(0,0,0,0.8);">{{ plan.duration_days }} days</div>
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'deposit' %}" class="btn btn-invest" style="background-color: #007bff !important; border-color: #007bff !important; color: #fff !important; margin-top: 10px;">Invest Now</a>
+                        {% else %}
+                            <a href="{% url 'register' %}" class="btn btn-invest" style="background-color: #007bff !important; border-color: #007bff !important; color: #fff !important; margin-top: 10px;">Invest Now</a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
             {% endfor %}
@@ -83,7 +116,7 @@
 
 <section class="referral-banner" id="referral" style="background: linear-gradient(135deg, #28a745 0%, #007bff 100%) !important;">
     <h2 style="color: #ffffff !important;">Earn 10% Referral Bonus</h2>
-    <p style="color: #ffffff !important;">Invite friends to Kikku Investments and earn a commission when they invest.</p>
+    <p style="color: #ffffff !important;">Invite friends to Classic Investments CAR and earn a commission when they invest.</p>
 </section>
 
 <section class="communities-section" id="communities">
@@ -113,9 +146,9 @@
 
 <section class="about-section" id="about">
     <div class="container">
-        <h2 class="section-title" style="color: #28a745 !important;">About Kikku Investments</h2>
+        <h2 class="section-title" style="color: #28a745 !important;">About Classic Investments CAR</h2>
         <p class="about-text" style="color: #ffffff !important;">
-            Kikku Investments is a smart investment platform built for Rwanda.
+            Classic Investments CAR is a smart investment platform built for Rwanda.
             Choose from VIP plans starting at 5,000 FRW, deposit via MTN MoMo,
             and earn daily rewards. Invite friends and earn a 10% referral bonus
             on their investments.
@@ -185,7 +218,7 @@
 
 <section class="contact-section" id="contact">
     <div class="container">
-        <h2 class="section-title" style="color: #28a745 !important;">Contact Us</h2>
+        <h2 class="section-title" style="color: #28a745 !important;">Contact Us CAR</h2>
         <p class="contact-phone" style="color: #007bff !important;">WhatsApp: +250 734 738 860</p>
         <div class="d-flex flex-wrap justify-content-center gap-3">
             <a href="https://chat.whatsapp.com/Bw7Er7WyzuPFFug0y5j34Q?s=sh&p=a&ilr=0" target="_blank" rel="noopener" class="btn btn-whatsapp">
