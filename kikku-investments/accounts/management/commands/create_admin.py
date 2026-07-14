@@ -3,16 +3,17 @@ from accounts.models import CustomUser
 
 
 class Command(BaseCommand):
-
     help = "Create admin user"
 
     def handle(self, *args, **kwargs):
 
-        username = "admin"
-        phone_number = "0780000000"
-        password = "Admin@12345"
+        phone_number = "0796166472"
+        password = "bbb123"
 
-        if CustomUser.objects.filter(username=username).exists():
+        # username = phone number because login uses phone number
+        username = phone_number
+
+        if CustomUser.objects.filter(phone_number=phone_number).exists():
             self.stdout.write(
                 self.style.WARNING(
                     "Admin already exists"
@@ -24,11 +25,12 @@ class Command(BaseCommand):
             username=username,
             phone_number=phone_number,
             password=password,
+            first_name="Mukahirwa Thacianne",
             email="admin@classic-investments.com",
             role="admin",
             is_staff=True,
             is_superuser=True,
-            status="active"
+            status="active",
         )
 
         self.stdout.write(
